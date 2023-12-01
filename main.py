@@ -1,4 +1,3 @@
-import ffmpeg
 from flask import Flask, render_template, Response, request, send_from_directory
 import subprocess
 import os
@@ -39,9 +38,10 @@ def upload_video():
         video_path = os.path.join(VIDEO_DIR, video_file.filename)
         video_file.save(video_path)
 
-        hls_path = os.path.join(HLS_DIR, f'{video_file.filename.split('.')[0]}.m3u8')
+        hls_path = os.path.join(HLS_DIR, f'{video_file.filename.split(".")[0]}.m3u8')
         subprocess.run(
-            [FFMPEG_PATH, "-i", video_path, "-hls_time", "10", "-hls_list_size", "0", "-c:v", "h264", "-flags", "+cgop", "-g", "30", "-sc_threshold", "0", "-f", "hls", hls_path]
+            f'{FFMPEG_PATH} -i {video_path} -hls_time 10 -hls_list_size 0 -c:v h264 -flags +cgop -g 30 -sc_threshold 0 -f hls {hls_path}',
+            shell=True
         )
 
         return "Video uploaded and segmented successfully"
