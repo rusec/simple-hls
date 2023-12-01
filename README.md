@@ -1,6 +1,5 @@
 Certainly! Below is a basic template for a README file for your HLS streaming server. I've also included a brief description of how HLS (HTTP Live Streaming) works.
 
-```markdown
 # HLS Streaming Server
 
 This project is a simple HLS streaming server built using Flask in Python. The server allows you to upload video files, which are then segmented and served as an HLS stream. It includes a basic web interface to view available videos and a video player to stream the content.
