@@ -26,7 +26,7 @@ os.makedirs(HLS_DIR, exist_ok=True)
 @app.route('/')
 def index():
     videos_dir = VIDEO_DIR
-    video_files = [f for f in os.listdir(videos_dir) if f.endswith('.mp4')]
+    video_files = [f for f in os.listdir(videos_dir)]
 
     return render_template('index.html', video_files=video_files)
 
@@ -65,4 +65,4 @@ def hls_files(filename):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0")
